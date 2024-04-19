@@ -17,7 +17,7 @@ export const reducer = (state: Currencies, action: SetAmountAction) => {
               code === action.payload.code
                 ? action.payload.amount
                 : action.payload.amount
-                ? (action.payload.amount * generateRandom(0.1, 9.0)).toFixed(2)
+                ? Math.ceil(action.payload.amount * generateRandom(0.1, 9.0))
                 : null,
           },
         }

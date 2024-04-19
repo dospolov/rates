@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
+import { Currencies } from "./types"
 
-export function useDebounce(value: string, delay: number): string {
+export function useDebounce(value: Currencies, delay: number): Currencies {
   const [debouncedValue, setDebouncedValue] = useState(value)
 
   useEffect(() => {

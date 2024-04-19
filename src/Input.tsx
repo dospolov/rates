@@ -36,10 +36,14 @@ export default function Input({
           id="price"
           value={amount ?? ""}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-7 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="0.00"
+          placeholder="0"
           aria-describedby="price-currency"
           onChange={(e) => {
-            const floatAmount = parseFloat(e.target.value)
+            if (e.target.value.length > 8) {
+              return
+            }
+
+            const floatAmount = parseInt(e.target.value, 10)
             if (floatAmount !== amount) {
               dispatch({
                 type: "SET_AMOUNT",
