@@ -1,6 +1,6 @@
 import type { CurrencyConversionResponse } from "../types"
 
-export default async function getFruits({
+export default async function getRates({
   amount,
   from,
   to,

@@ -20,6 +20,12 @@ export type SetAmountAction = {
   }
 }
 
+export type RequestRateProps = {
+  amount: number
+  from: Code
+  dispatch: (action: SetAmountAction) => void
+}
+
 export type CurrencyConversionResponse = {
   success: boolean
   query: CurrencyQuery
@@ -30,14 +36,12 @@ export type CurrencyConversionResponse = {
   result: number
 }
 
-// Query details for the currency conversion
 type CurrencyQuery = {
   from: string
   to: string
   amount: number
 }
 
-// Information about the conversion rate
 type ConversionInfo = {
   rate: number
 }

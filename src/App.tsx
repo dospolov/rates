@@ -1,20 +1,11 @@
-import { useEffect, useReducer } from "react"
-import "./App.css"
+import { useReducer } from "react"
 import Input from "./Input"
-import { useDebounce } from "./hooks"
 import { initialState } from "./const"
 import { reducer } from "./reducer"
-import getRates from "./api/getRates"
-import isEqual from "lodash.isequal"
+import "./App.css"
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const debouncedInput = useDebounce(state, 500)
-
-  useEffect(() => {
-    if (debouncedInput && !isEqual(initialState, debouncedInput)) {
-    }
-  }, [debouncedInput])
 
   return (
     <div className="p-6 mx-auto max-w-96">

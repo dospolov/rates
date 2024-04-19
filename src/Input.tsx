@@ -1,20 +1,7 @@
-import type { Currency, SetAmountAction } from "./types"
-
-// useEffect(() => {
-//   // fetch using native fetch API and bearer token
-//   fetch(
-//     "https://api.fxratesapi.com/convert?from=GBP&to=EUR&date=2012-06-24&amount=234.12&format=json",
-//     {
-//       method: "GET",
-//       headers: {
-//         Authorization: `Bearer ${import.meta.env.VITE_FXRATES_TOKEN}`,
-//       },
-//     }
-//   )
-//     .then((response) => response.json())
-//     .then((data) => console.log(data))
-//     .catch((error) => console.error(error))
-// }, [])
+import { useMemo } from "react"
+import debounce from "lodash.debounce"
+import { Currency, SetAmountAction } from "./types"
+import { requestRates } from "./utils"
 
 export default function Input({
   code,
@@ -24,6 +11,8 @@ export default function Input({
 }: Currency & {
   dispatch: (action: SetAmountAction) => void
 }) {
+  const requestRatesDebounced = useMemo(() => debounce(requestRates, 1000), [])
+
   return (
     <div>
       <div className="relative mt-2 rounded-md shadow-sm">
@@ -45,14 +34,19 @@ export default function Input({
 
             const floatAmount = parseInt(e.target.value, 10)
             if (floatAmount !== amount) {
-              dispatch({
+              const newAmount =
+                e.target.value && !isNaN(floatAmount) ? floatAmount : null
+              const action = {
                 type: "SET_AMOUNT",
-                payload: {
-                  code,
-                  amount:
-                    e.target.value && !isNaN(floatAmount) ? floatAmount : null,
-                },
-              })
+                payload: { code, amount: newAmount },
+              }
+              dispatch(action)
+              if (newAmount)
+                requestRatesDebounced({
+                  amount: newAmount,
+                  from: code,
+                  dispatch,
+                })
             }
           }}
           onFocus={(e) => e.target.select()}
