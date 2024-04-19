@@ -13,19 +13,21 @@ function App() {
   }, [])
 
   return (
-    <div className="p-6 mx-auto max-w-96">
-      {/* symbols taken from */}
-      {/* https://gist.github.com/Gibbs/3920259 */}
-      {Object.values(state).map(({ code, symbol, amount, isLoading }) => (
-        <Input
-          key={code}
-          code={code}
-          symbol={symbol}
-          amount={amount}
-          isLoading={isLoading}
-          dispatch={dispatch}
-        />
-      ))}
+    <div className="h-full flex items-center">
+      <div className="p-6 mx-auto w-full space-y-4 max-w-xl">
+        {/* symbols taken from */}
+        {/* https://gist.github.com/Gibbs/3920259 */}
+        {Object.values(state).map(({ code, symbol, amount, isLoading }) => (
+          <Input
+            key={code}
+            code={code}
+            symbol={symbol}
+            amount={amount}
+            isLoading={isLoading}
+            dispatch={dispatch}
+          />
+        ))}
+      </div>
     </div>
   )
 }
