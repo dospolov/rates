@@ -1,11 +1,16 @@
-import { useReducer } from "react"
+import { useReducer, useEffect } from "react"
 import Input from "./Input"
 import { initialState } from "./const"
 import { reducer } from "./reducer"
+import { getFromUrl } from "./utils"
 import "./App.css"
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  useEffect(() => {
+    getFromUrl({ dispatch })
+  }, [])
 
   return (
     <div className="p-6 mx-auto max-w-96">
