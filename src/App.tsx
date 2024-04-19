@@ -1,15 +1,25 @@
+import { useReducer } from "react"
 import "./App.css"
 import Input from "./Input"
+import { initialState } from "./const"
+import { reducer } from "./reducer"
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
   return (
     <div className="p-6 mx-auto max-w-96">
       {/* symbols taken from */}
       {/* https://gist.github.com/Gibbs/3920259 */}
-      <Input currency="PLN" symbol="&#122;&#322;" />
-      <Input currency="USD" symbol="&#36;" />
-      <Input currency="EUR" symbol="&#8364;" />
-      <Input currency="UAH" symbol="&#8372;" />
+      {Object.values(state).map(({ code, symbol, amount }) => (
+        <Input
+          key={code}
+          code={code}
+          symbol={symbol}
+          amount={amount}
+          dispatch={dispatch}
+        />
+      ))}
     </div>
   )
 }
