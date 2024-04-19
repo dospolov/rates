@@ -14,7 +14,11 @@ export function requestRates({ from, amount, dispatch }: RequestRateProps) {
       const code = codes.at(index) as Code
       dispatch({
         type: "SET_AMOUNT",
-        payload: { code, amount: Math.floor(response.result) },
+        payload: {
+          code,
+          amount: Math.floor(response.result),
+          isLoading: false,
+        },
       })
     })
   })

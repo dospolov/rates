@@ -6,6 +6,7 @@ export type Currency = {
   code: Code
   symbol: string
   amount: number | null
+  isLoading: boolean
 }
 
 export type Currencies = {
@@ -17,6 +18,7 @@ export type SetAmountAction = {
   payload: {
     code: Code
     amount: number | null
+    isLoading: boolean
   }
 }
 
