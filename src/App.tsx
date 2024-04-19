@@ -27,7 +27,12 @@ function App() {
             dispatch={dispatch}
           />
         ))}
-        <p className="text-slate-700">App version: 0.14</p>
+        <div className="text-slate-700 space-y-1">
+          <p>App version: 0.15</p>
+          <p>
+            Rates provided by: <a href="https://fxratesapi.com/">FXRatesAPI</a>
+          </p>
+        </div>
       </div>
     </div>
   )
