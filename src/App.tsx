@@ -27,6 +27,7 @@ function App() {
             dispatch={dispatch}
           />
         ))}
+        <p className="text-slate-700">App version: 0.14</p>
       </div>
     </div>
   )
