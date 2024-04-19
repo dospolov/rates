@@ -13,7 +13,7 @@ function App() {
   }, [])
 
   return (
-    <div className="h-full flex items-center">
+    <div className="h-[100svh] flex items-center">
       <div className="p-6 mx-auto w-full space-y-4 max-w-xl">
         {/* symbols taken from */}
         {/* https://gist.github.com/Gibbs/3920259 */}
