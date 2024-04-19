@@ -25,7 +25,7 @@ export default function Input({
           name="price"
           id="price"
           value={amount ?? ""}
-          className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 disabled:cursor-not-allowed disabled:border-gray-900 disabled:bg-gray-800 disabled:text-gray-500 disabled:ring-gray-900 text-xl"
+          className="border rounded-lg block w-full p-5 pl-10 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:cursor-not-allowed disabled:border-gray-900 disabled:bg-gray-800 disabled:text-gray-500 disabled:ring-gray-900 text-xl"
           placeholder="0"
           aria-describedby="price-currency"
           disabled={isLoading}
