@@ -4,14 +4,15 @@ import Input from "./Input"
 import { useDebounce } from "./hooks"
 import { initialState } from "./const"
 import { reducer } from "./reducer"
+import getRates from "./api/getRates"
+import isEqual from "lodash.isequal"
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
   const debouncedInput = useDebounce(state, 500)
 
   useEffect(() => {
-    if (debouncedInput) {
-      console.log(debouncedInput)
+    if (debouncedInput && !isEqual(initialState, debouncedInput)) {
     }
   }, [debouncedInput])
 

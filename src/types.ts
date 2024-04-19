@@ -19,3 +19,25 @@ export type SetAmountAction = {
     amount: number | null
   }
 }
+
+export type CurrencyConversionResponse = {
+  success: boolean
+  query: CurrencyQuery
+  info: ConversionInfo
+  historical: boolean
+  date: string
+  timestamp: number
+  result: number
+}
+
+// Query details for the currency conversion
+type CurrencyQuery = {
+  from: string
+  to: string
+  amount: number
+}
+
+// Information about the conversion rate
+type ConversionInfo = {
+  rate: number
+}
