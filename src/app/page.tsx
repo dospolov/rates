@@ -1,5 +1,5 @@
-import { ComponentExample } from "@/components/component-example"
+import Form from "./Form"
 
 export default function Page() {
-  return <ComponentExample />
+  return <Form />
 }

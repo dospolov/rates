@@ -1,4 +1,4 @@
-import type { CurrencyConversionResponse } from "../types"
+import type { CurrencyConversionResponse } from "@/types"
 
 export default async function getRates({
   amount,
@@ -14,7 +14,7 @@ export default async function getRates({
     {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_FXRATES_TOKEN}`,
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_FXRATES_TOKEN}`,
       },
     },
   )
