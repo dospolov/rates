@@ -11,9 +11,6 @@ importers:
       '@base-ui/react':
         specifier: ^1.1.0
         version: 1.1.0(@types/react@19.2.10)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@capacitor/cli':
-        specifier: ^8.0.2
-        version: 8.0.2
       '@capacitor/core':
         specifier: ^8.0.2
         version: 8.0.2
@@ -57,6 +54,15 @@ importers:
       '@biomejs/biome':
         specifier: 2.3.13
         version: 2.3.13
+      '@capacitor/android':
+        specifier: ^8.0.2
+        version: 8.0.2(@capacitor/core@8.0.2)
+      '@capacitor/cli':
+        specifier: ^8.0.2
+        version: 8.0.2
+      '@capacitor/ios':
+        specifier: ^8.0.2
+        version: 8.0.2(@capacitor/core@8.0.2)
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.1.18
@@ -299,6 +305,11 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@capacitor/android@8.0.2':
+    resolution: {integrity: sha512-0D7j0YvzjnfCMKLvFkAbx8b3Vwx+QfHFG5NzoXpI9sAl3zWiLsfa+NX4x92Fy+k4MGjLSMAfLThCqILYGDDsgw==}
+    peerDependencies:
+      '@capacitor/core': ^8.0.0
+
   '@capacitor/cli@8.0.2':
     resolution: {integrity: sha512-/8qLYxhytMyUKTHK8i6YU+DMD3AuFiQgSuJCyMltcg9MN3W9En7zqQZSo/WN4eC7qif/oyZACzm7OkAZKani7g==}
     engines: {node: '>=22.0.0'}
@@ -306,6 +317,11 @@ packages:
 
   '@capacitor/core@8.0.2':
     resolution: {integrity: sha512-EXZfxkL6GFJS2cb7TIBR7RiHA5iz6ufDcl1VmUpI2pga3lJ5Ck2+iqbx7N+osL3XYem9ad4XCidJEMm64DX6UQ==}
+
+  '@capacitor/ios@8.0.2':
+    resolution: {integrity: sha512-7EM7vBxXI3Ku49aYCJcS9su5Y3i6UmXpx7e0y+oQV9PzCnZ6l5B0ACJ+gXAU0bM3q7/f+kGBsOtXMid84rU6MQ==}
+    peerDependencies:
+      '@capacitor/core': ^8.0.0
 
   '@dotenvx/dotenvx@1.52.0':
     resolution: {integrity: sha512-CaQcc8JvtzQhUSm9877b6V4Tb7HCotkcyud9X2YwdqtQKwgljkMRwU96fVYKnzN3V0Hj74oP7Es+vZ0mS+Aa1w==}
@@ -3291,6 +3307,10 @@ snapshots:
   '@biomejs/cli-win32-x64@2.3.13':
     optional: true
 
+  '@capacitor/android@8.0.2(@capacitor/core@8.0.2)':
+    dependencies:
+      '@capacitor/core': 8.0.2
+
   '@capacitor/cli@8.0.2':
     dependencies:
       '@ionic/cli-framework-output': 2.2.8
@@ -3316,6 +3336,10 @@ snapshots:
   '@capacitor/core@8.0.2':
     dependencies:
       tslib: 2.8.1
+
+  '@capacitor/ios@8.0.2(@capacitor/core@8.0.2)':
+    dependencies:
+      '@capacitor/core': 8.0.2
 
   '@dotenvx/dotenvx@1.52.0':
     dependencies:

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">rates</string>
+    <string name="title_activity_main">rates</string>
+    <string name="package_name">com.senseapps.rates</string>
+    <string name="custom_url_scheme">com.senseapps.rates</string>
+</resources>
