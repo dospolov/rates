@@ -1,4 +1,4 @@
-import type { Codes } from "./const"
+import type { Codes } from "@/const"
 
 export type Code = (typeof Codes)[number]
 
