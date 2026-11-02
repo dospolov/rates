@@ -1,6 +1,6 @@
 import type { Currencies } from "./types"
 
-export const Codes = ["PLN", "EUR", "USD", "UAH"] as const
+export const Codes = ["PLN", "EUR", "USD", "UAH", "GEL"] as const
 
 export const initialState: Currencies = {
   PLN: {
@@ -25,6 +25,12 @@ export const initialState: Currencies = {
     code: "UAH",
     symbol: "₴",
     amount: 0,
+    isLoading: false,
+  },
+  GEL: {
+    code: "GEL",
+    symbol: "₾",
+    amount: null,
     isLoading: false,
   },
 }
