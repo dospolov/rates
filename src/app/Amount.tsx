@@ -20,7 +20,7 @@ export default function Amount({
   const requestRatesDebounced = useMemo(() => debounce(requestRates, 1000), [])
 
   return (
-    <InputGroup>
+    <InputGroup className="h-[clamp(2.5rem,9svh,4rem)]">
       <InputGroupInput
         type="text"
         name="price"

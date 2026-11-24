@@ -10,8 +10,8 @@ function Form() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
-    <div className="h-[100svh] flex items-center">
-      <div className="p-6 mx-auto w-full space-y-4 max-w-xl">
+    <>
+      <div className="px-6 mx-auto w-full space-y-[clamp(0.5rem,2svh,1rem)] max-w-xl">
         {/* symbols taken from */}
         {/* https://gist.github.com/Gibbs/3920259 */}
         {Object.values(state).map(
@@ -26,14 +26,14 @@ function Form() {
             />
           ),
         )}
-        <div className="text-slate-700 space-y-1">
-          <p>App version: 0.16</p>
-          <p>
-            Rates provided by: <a href="https://fxratesapi.com/">FXRatesAPI</a>
-          </p>
-        </div>
       </div>
-    </div>
+      <div className="self-end px-6 py-4 mx-auto w-full max-w-xl text-slate-700 space-y-1">
+        <p>App version: 0.16</p>
+        <p>
+          Rates provided by: <a href="https://fxratesapi.com/">FXRatesAPI</a>
+        </p>
+      </div>
+    </>
   )
 }
 
