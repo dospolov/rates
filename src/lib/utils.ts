@@ -57,6 +57,8 @@ export function getFromUrl({
   if (UAH) requestInitialRates("UAH", Number(UAH))
   const GEL = query.get("GEL")
   if (GEL) requestInitialRates("GEL", Number(GEL))
+  const THB = query.get("THB")
+  if (THB) requestInitialRates("THB", Number(THB))
 
   window.history.pushState({}, "", window.location.pathname)
 }
