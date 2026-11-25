@@ -29,11 +29,11 @@ export default function Amount({
     <InputGroup className="h-[clamp(2.5rem,9svh,4rem)]">
       <InputGroupInput
         type="text"
-        name="price"
-        id="price"
+        name={`price-${code}`}
+        id={`price-${code}`}
         value={amount ?? ""}
         placeholder="0"
-        aria-describedby="price-currency"
+        aria-describedby={`currency-${code}`}
         disabled={isLoading}
         onChange={(e) => {
           if (e.target.value.length > 8) {
@@ -60,7 +60,7 @@ export default function Amount({
         onFocus={(e) => e.target.select()}
       />
       <InputGroupAddon>{symbol}</InputGroupAddon>
-      <InputGroupAddon align="inline-end">
+      <InputGroupAddon align="inline-end" id={`currency-${code}`}>
         {code}
         {onRemove && (
           <InputGroupButton
