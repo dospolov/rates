@@ -1,10 +1,12 @@
 import { useMemo } from "react"
 import debounce from "lodash.debounce"
-import type { Currency, SetAmountAction } from "@/types"
+import { XIcon } from "lucide-react"
+import type { Code, Currency, Action } from "@/types"
 import { requestRates } from "@/lib/utils"
 import {
   InputGroup,
   InputGroupAddon,
+  InputGroupButton,
   InputGroupInput,
 } from "@/components/ui/input-group"
 
@@ -13,9 +15,13 @@ export default function Amount({
   symbol,
   amount,
   isLoading,
+  codes,
   dispatch,
+  onRemove,
 }: Currency & {
-  dispatch: (action: SetAmountAction) => void
+  codes: Code[]
+  dispatch: (action: Action) => void
+  onRemove?: () => void
 }) {
   const requestRatesDebounced = useMemo(() => debounce(requestRates, 1000), [])
 
@@ -38,15 +44,15 @@ export default function Amount({
           if (floatAmount !== amount) {
             const newAmount =
               e.target.value && !isNaN(floatAmount) ? floatAmount : null
-            const action = {
+            dispatch({
               type: "SET_AMOUNT",
               payload: { code, amount: newAmount, isLoading: true },
-            }
-            dispatch(action)
+            })
             if (newAmount && !isNaN(floatAmount))
               requestRatesDebounced({
                 amount: newAmount,
                 from: code,
+                to: codes,
                 dispatch,
               })
           }
@@ -54,7 +60,19 @@ export default function Amount({
         onFocus={(e) => e.target.select()}
       />
       <InputGroupAddon>{symbol}</InputGroupAddon>
-      <InputGroupAddon align="inline-end">{code}</InputGroupAddon>
+      <InputGroupAddon align="inline-end">
+        {code}
+        {onRemove && (
+          <InputGroupButton
+            size="icon-xs"
+            variant="ghost"
+            aria-label={`Remove ${code}`}
+            onClick={onRemove}
+          >
+            <XIcon />
+          </InputGroupButton>
+        )}
+      </InputGroupAddon>
     </InputGroup>
   )
 }

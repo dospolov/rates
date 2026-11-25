@@ -1,13 +1,10 @@
-import { Codes } from "@/const"
-import type { Currencies, SetAmountAction, Code } from "@/types"
+import { DEFAULT_CODES, makeState, symbolOf } from "@/const"
+import type { Currencies, Action, Code } from "@/types"
 
-export const reducer = (
-  state: Currencies,
-  action: SetAmountAction,
-): Currencies => {
+export const reducer = (state: Currencies, action: Action): Currencies => {
   switch (action.type) {
     case "SET_AMOUNT":
-      return Codes.reduce(
+      return Object.keys(state).reduce(
         (acc: Currencies, code: Code) => ({
           ...acc,
           [code]: {
@@ -24,6 +21,27 @@ export const reducer = (
         }),
         state,
       )
+    case "ADD_CURRENCY": {
+      const { code } = action.payload
+      if (state[code]) return state
+      return {
+        ...state,
+        [code]: {
+          code,
+          symbol: symbolOf(code),
+          amount: null,
+          isLoading: false,
+        },
+      }
+    }
+    case "REMOVE_CURRENCY": {
+      const { code } = action.payload
+      if (DEFAULT_CODES.includes(code) || !state[code]) return state
+      const { [code]: _removed, ...rest } = state
+      return rest
+    }
+    case "SET_CODES":
+      return makeState(action.payload.codes)
     default:
       return state
   }

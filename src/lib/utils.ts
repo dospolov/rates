@@ -1,20 +1,19 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { Codes } from "@/const"
 import getRates from "@/app/api/getRates"
 import type {
   Code,
   CurrencyConversionResponse,
   RequestRateProps,
-  SetAmountAction,
+  Action,
 } from "@/types"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function requestRates({ from, amount, dispatch }: RequestRateProps) {
-  const codes = Codes.filter((code) => code !== from)
+export function requestRates({ from, amount, to, dispatch }: RequestRateProps) {
+  const codes = to.filter((code) => code !== from)
 
   Promise.all(
     codes.map((code) => {
@@ -38,27 +37,20 @@ export function requestRates({ from, amount, dispatch }: RequestRateProps) {
 export function getFromUrl({
   dispatch,
 }: {
-  dispatch: (action: SetAmountAction) => void
+  dispatch: (action: Action) => void
 }) {
   const query = new URLSearchParams(window.location.search)
+  const all: Code[] = ["PLN", "USD", "EUR", "UAH", "GEL", "THB"]
 
   const requestInitialRates = (code: Code, amount: number) => {
     dispatch({ type: "SET_AMOUNT", payload: { code, amount, isLoading: true } })
-    requestRates({ from: code, amount, dispatch })
+    requestRates({ from: code, amount, to: all, dispatch })
   }
 
-  const PLN = query.get("PLN")
-  if (PLN) requestInitialRates("PLN", Number(PLN))
-  const USD = query.get("USD")
-  if (USD) requestInitialRates("USD", Number(USD))
-  const EUR = query.get("EUR")
-  if (EUR) requestInitialRates("EUR", Number(EUR))
-  const UAH = query.get("UAH")
-  if (UAH) requestInitialRates("UAH", Number(UAH))
-  const GEL = query.get("GEL")
-  if (GEL) requestInitialRates("GEL", Number(GEL))
-  const THB = query.get("THB")
-  if (THB) requestInitialRates("THB", Number(THB))
+  for (const code of all) {
+    const value = query.get(code)
+    if (value) requestInitialRates(code, Number(value))
+  }
 
   window.history.pushState({}, "", window.location.pathname)
 }

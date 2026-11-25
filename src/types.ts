@@ -1,6 +1,4 @@
-import type { Codes } from "@/const"
-
-export type Code = (typeof Codes)[number]
+export type Code = string
 
 export type Currency = {
   code: Code
@@ -9,12 +7,10 @@ export type Currency = {
   isLoading: boolean
 }
 
-export type Currencies = {
-  [K in Code]: Currency
-}
+export type Currencies = Record<Code, Currency>
 
 export type SetAmountAction = {
-  type: string
+  type: "SET_AMOUNT"
   payload: {
     code: Code
     amount: number | null
@@ -22,10 +18,32 @@ export type SetAmountAction = {
   }
 }
 
+export type AddCurrencyAction = {
+  type: "ADD_CURRENCY"
+  payload: { code: Code }
+}
+
+export type RemoveCurrencyAction = {
+  type: "REMOVE_CURRENCY"
+  payload: { code: Code }
+}
+
+export type SetCodesAction = {
+  type: "SET_CODES"
+  payload: { codes: Code[] }
+}
+
+export type Action =
+  | SetAmountAction
+  | AddCurrencyAction
+  | RemoveCurrencyAction
+  | SetCodesAction
+
 export type RequestRateProps = {
   amount: number
   from: Code
-  dispatch: (action: SetAmountAction) => void
+  to: Code[]
+  dispatch: (action: Action) => void
 }
 
 export type CurrencyConversionResponse = {
